@@ -42,12 +42,14 @@ const loginRoutes = require('./src/routes/login');
 const bookRoutes = require('./src/routes/book');
 const clubRoutes = require('./src/routes/club');
 const userRoutes = require('./src/routes/user');
+const sessionRoutes = require('./src/routes/session');
 
 //use routes
 app.use('/login', loginRoutes(db));
 app.use('/book', bookRoutes(db));
 app.use('/club', clubRoutes(db));
 app.use('/user', userRoutes(db));
+app.use('/session', sessionRoutes(db));
 
 app.get('/', (req, res) => {
   res.send('test');
