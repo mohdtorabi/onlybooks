@@ -20,12 +20,13 @@ const db = new Client({
 // use this if you want to use local db or db without
 // database_url string
 // const db = new Client({
-//   user: 'dbuser',
-//   host: 'database.server.com',
-//   database: 'mydb',
-//   password: 'secretpassword',
-//   port: 3211,
+//   user: process.env.DB_USER,
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASS,
+//   port: process.env.DB_PORT,
 // });
+
 db.connect();
 
 //import routes
