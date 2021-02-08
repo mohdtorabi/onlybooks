@@ -1,10 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
 const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['user_id'],
+    overwrite: true,
+  })
+);
 
 //import process.env settings
 require('dotenv').config();
@@ -31,9 +39,15 @@ db.connect();
 
 //import routes
 const loginRoutes = require('./src/routes/login');
+const bookRoutes = require('./src/routes/book');
+const clubRoutes = require('./src/routes/club');
+const userRoutes = require('./src/routes/user');
 
 //use routes
 app.use('/login', loginRoutes(db));
+app.use('/book', bookRoutes(db));
+app.use('/club', clubRoutes(db));
+app.use('/user', userRoutes(db));
 
 app.get('/', (req, res) => {
   res.send('test');
