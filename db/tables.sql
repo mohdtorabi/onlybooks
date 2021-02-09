@@ -20,7 +20,6 @@ CREATE TABLE users (
 )
 
 
-
 CREATE TABLE book (
   id SERIAL PRIMARY KEY NOT NULL,
   book_name VARCHAR(255) NOT NULL,
