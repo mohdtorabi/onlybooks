@@ -94,6 +94,7 @@ module.exports = (db) => {
     const password2 = req.body.password2;
     const image_url = req.body.image_url;
 
+    //check if email exists in db
     db.query(
       `SELECT * FROM users
               WHERE email = $1;`,
