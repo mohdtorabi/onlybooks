@@ -17,29 +17,30 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
-    const name = req.body.name;
+    const club_name = req.body.club_name;
     const is_private = req.body.private;
     const image_url = req.body.image_url;
 
     //first check if book club with name exists
     db.query(
       `SELECT * FROM book_club
-              WHERE name = $1;`,
-      [name]
+              WHERE club_name = $1;`,
+      [club_name]
     ).then((data) => {
       if (data.rows[0] !== undefined) {
         return res.send('exists');
       }
-      const queryParams = [name, is_private, image_url];
-
+      const queryParams = [club_name, is_private, image_url];
+      console.log(queryParams);
       db.query(
-        `INSERT INTO book_club (name, private, image_url)
+        `INSERT INTO book_club (club_name, private, image_url)
               VALUES ($1, $2, $3)
               RETURNING *;`,
         queryParams
       )
         .then((data) => {
           const club = data.rows[0];
+          console.log(club);
           return res.status(200).send(club);
         })
         .catch((err) => {

@@ -16,8 +16,8 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-  image_url VARCHAR(255),
-)
+  image_url VARCHAR(255)
+  );
 
 
 CREATE TABLE book (
@@ -28,15 +28,17 @@ CREATE TABLE book (
   genre VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   image_url VARCHAR(255),
-  ISBN VARCHAR(255) NOT NULL,
+  ISBN VARCHAR(255) NOT NULL
 );
 
 
 CREATE TABLE book_club (
   id SERIAL PRIMARY KEY NOT NULL,
-  book_id VARCHAR(255) NOT NULL,
+  -- book_id not needed, can get from session table
+  -- book_id VARCHAR(255) NOT NULL,
   club_name VARCHAR(255) NOT NULL,
-  users VARCHAR(255) NOT NULL,
+  -- users not needed, can get from book_club_readers table
+  -- users VARCHAR(255) NOT NULL,
   private BOOLEAN NOT NULL DEFAULT FALSE,
   image_url VARCHAR(255)
 );
@@ -66,7 +68,7 @@ CREATE TABLE read (
   page_number INT,
   finished BOOLEAN NOT NULL DEFAULT FALSE,
   rating INT,
-  review VARCHAR(255),
+  review VARCHAR(255)
 );
 
 CREATE TABLE session (
@@ -98,7 +100,7 @@ CREATE TABLE messages (
   messages VARCHAR(255) NOT NULL,
   page_number INT NOT NULL,
   spoilers BOOLEAN NOT NULL DEFAULT FALSE,
-  created_at,
+  created_at DATE
 );
 
 CREATE TABLE book_club_readers (
@@ -114,5 +116,5 @@ CREATE TABLE book_club_readers (
 	  REFERENCES users(id),
  CONSTRAINT fk_book
     FOREIGN KEY(book_id) 
-	  REFERENCES book(id),
+	  REFERENCES book(id)
 );

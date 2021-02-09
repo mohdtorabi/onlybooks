@@ -46,10 +46,10 @@ const sessionRoutes = require('./src/routes/session');
 
 //use routes
 app.use('/login', loginRoutes(db));
-app.use('/book', bookRoutes(db));
-app.use('/club', clubRoutes(db));
-app.use('/user', userRoutes(db));
-app.use('/session', sessionRoutes(db));
+app.use('/api/book', bookRoutes(db));
+app.use('/api/club', clubRoutes(db));
+app.use('/api/user', userRoutes(db));
+app.use('/api/session', sessionRoutes(db));
 
 app.get('/', (req, res) => {
   res.send('test');
