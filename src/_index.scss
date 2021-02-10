@@ -1,6 +1,6 @@
 $base-dark: black;
 $base-light: white;
-
+$base-highlight-light: #e9c46a;
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,4 +13,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+:-moz-ui-invalid {
+  box-shadow: none;
 }

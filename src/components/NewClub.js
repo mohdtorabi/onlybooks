@@ -45,6 +45,12 @@ export default function NewClub() {
       .post(URL, data)
       .then((response) => {
         console.log(response);
+        setClub({
+          ...club,
+          club_name: '',
+          image_url: '',
+          private: false,
+        });
       })
       .catch(console.log('error'));
     return promise;

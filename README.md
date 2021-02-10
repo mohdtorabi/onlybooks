@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Book Club App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Book Club app made with React, Node, Express and PostreSQL
 
 ## Available Scripts
 

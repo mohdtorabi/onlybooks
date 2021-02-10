@@ -42,12 +42,11 @@ module.exports = (db) => {
 
   //create user route
   router.post('/', (req, res) => {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
+    const firstName = req.body.first_name;
+    const lastName = req.body.last_name;
     const email = req.body.email;
     const password = req.body.password;
     const password2 = req.body.password2;
-    const image_url = req.body.image_url;
     db.query(
       `SELECT * FROM users
               WHERE email = $1;`,
@@ -60,17 +59,11 @@ module.exports = (db) => {
         return res.send('mismatch');
       }
       const hashedPassword = bcrypt.hashSync(password, 10);
-      const queryParams = [
-        firstName,
-        lastName,
-        email,
-        hashedPassword,
-        image_url,
-      ];
-
+      const queryParams = [firstName, lastName, email, hashedPassword];
+      console.log(queryParams);
       db.query(
-        `INSERT INTO users (firstName, lastName, email, password, image_url)
-              VALUES ($1, $2, $3, $4, $5)
+        `INSERT INTO users (first_name, last_name, email, password)
+              VALUES ($1, $2, $3, $4)
               RETURNING *;`,
         queryParams
       )
