@@ -5,8 +5,8 @@ import SearchBook from './components/Search/SearchBook';
 function App() {
   return (
     <div>
-      <NewClub></NewClub>
-      <NewUser></NewUser>
+      {/* <NewClub></NewClub>
+      <NewUser></NewUser> */}
       <SearchBook></SearchBook>
     </div>
   );

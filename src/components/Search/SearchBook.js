@@ -5,61 +5,73 @@ import axios from 'axios';
 export default function SearchBook() {
   const [book, setBook] = useState('');
   const [result, setResult] = useState([]);
-  const [apiKey, setApiKey] = useState(
-    process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
-  );
+  const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 
   function handleChange(event) {
+    event.preventDefault();
     const book = event.target.value;
     setBook(book);
-  }
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(process.env.REACT_APP_GOOGLE_BOOKS_API_KEY);
     axios
       .get(
-        'https://www.googleapis.com/books/v1/volumes?q=' +
+        'https://www.googleapis.com/books/v1/volumes?printType=books&q=' +
           book +
           '&key=' +
           apiKey +
-          '&maxResults=40'
+          '&maxResults=10'
       )
       .then((data) => {
         console.log(data.data.items);
         setResult(data.data.items);
+      })
+      .catch(() => {
+        console.log('Book Search Error');
       });
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="card-header main-search">
         <input
           onChange={handleChange}
           className="AutoFocus form-control"
-          placeholder="Type book name..."
+          placeholder="Search for a book..."
           type="text"
-        />
-        <input
-          type="submit"
-          value="Search"
-          className="btn btn-primary search-btn"
         />
       </div>
       <div className="container">
-        {result.map((book) => (
-          <div className="book-card">
-            <img
-              src={
-                book.volumeInfo.imageLinks !== undefined
-                  ? book.volumeInfo.imageLinks.thumbnail
-                  : ''
-              }
-              alt={book.title}
-            />
-            <p>
-              <h5 className="card-title">{book.volumeInfo.title}</h5>
-            </p>
-          </div>
-        ))}
+        {book
+          ? result.map((book) => (
+              <div className="book-card">
+                <img
+                  src={
+                    book.volumeInfo.imageLinks !== undefined
+                      ? book.volumeInfo.imageLinks.thumbnail
+                      : ''
+                  }
+                  alt={book.title}
+                />
+                <p>
+                  <h5 className="card-title">Title: {book.volumeInfo.title}</h5>
+                  <h5 className="card-title">
+                    Pages: {book.volumeInfo.pageCount}
+                  </h5>
+                  <h5 className="card-title">
+                    Published: {book.volumeInfo.publishedDate}
+                  </h5>
+                  <h5 className="card-title">
+                    Author:{' '}
+                    {book.volumeInfo.authors
+                      ? book.volumeInfo.authors[0]
+                      : null}
+                  </h5>
+                  {/* <h5 className="card-title">
+                    {book.volumeInfo.description
+                      ? book.volumeInfo.description
+                      : null}
+                  </h5> */}
+                </p>
+              </div>
+            ))
+          : null}
       </div>
     </form>
   );
