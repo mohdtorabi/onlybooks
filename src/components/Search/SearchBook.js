@@ -6,7 +6,7 @@ export default function SearchBook() {
   const [book, setBook] = useState('');
   const [result, setResult] = useState([]);
   const [apiKey, setApiKey] = useState(
-    'AIzaSyDYqoOuixHYPK519JfGcBH7h90uwKa7OMY'
+    process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
   );
 
   function handleChange(event) {
@@ -15,6 +15,7 @@ export default function SearchBook() {
   }
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(process.env.REACT_APP_GOOGLE_BOOKS_API_KEY);
     axios
       .get(
         'https://www.googleapis.com/books/v1/volumes?q=' +

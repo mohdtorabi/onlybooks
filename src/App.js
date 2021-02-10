@@ -1,7 +1,7 @@
 import './App.scss';
 import NewClub from './components/NewClub';
 import NewUser from './components/NewUser';
-import SearchBook from './components/SearchBook';
+import SearchBook from './components/Search/SearchBook';
 function App() {
   return (
     <div>
