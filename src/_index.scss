@@ -1,6 +1,7 @@
 $base-dark: black;
 $base-light: white;
-$base-highlight-light: #e9c46a;
+$base-highlight-light: #f0f3bd;
+$base-highlight-dark: #02c39a;
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $base-highlight-dark;
 }
 
 code {

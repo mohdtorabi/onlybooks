@@ -18,7 +18,7 @@ export default function SearchBook() {
           book +
           '&key=' +
           apiKey +
-          '&maxResults=10'
+          '&maxResults=20'
       )
       .then((data) => {
         console.log(data.data.items);
@@ -29,8 +29,9 @@ export default function SearchBook() {
       });
   }
   return (
-    <form>
-      <div className="card-header main-search">
+    <form className="book-card-search">
+      <div>
+        <h1>Search for a book...</h1>
         <input
           onChange={handleChange}
           className="AutoFocus form-control"
@@ -38,7 +39,7 @@ export default function SearchBook() {
           type="text"
         />
       </div>
-      <div className="container">
+      <div className="book-card-container">
         {book ? result.map((book) => <Book book={book}></Book>) : null}
       </div>
     </form>

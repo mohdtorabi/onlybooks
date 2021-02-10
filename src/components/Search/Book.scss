@@ -1,0 +1,30 @@
+@import '../../index';
+
+.book-card {
+  width: 300px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  border-style: solid;
+  border-width: thin;
+  margin: 10px;
+  background-color: $base-highlight-light;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
+  .book-card-cover {
+    grid-row: 1;
+    grid-column: 1;
+
+    .book-card-cover-image {
+      padding: 10px;
+    }
+  }
+
+  .book-card-info {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+
+.book-card:hover {
+  transform: scale(102%);
+}

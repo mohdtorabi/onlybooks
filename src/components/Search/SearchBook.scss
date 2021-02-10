@@ -1,0 +1,18 @@
+@import '../../index';
+.book-card-search {
+  text-align: center;
+}
+
+.book-card-container {
+  text-align: center;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  .book-card-search {
+    width: 100%;
+    display: block;
+  }
+}
