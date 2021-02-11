@@ -122,3 +122,4 @@ CREATE TABLE book_club_readers (
     FOREIGN KEY(book_id) 
 	  REFERENCES book(id)
 );
+

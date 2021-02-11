@@ -1,7 +1,7 @@
 -- Users seed insertion
-INSERT INTO users (id, first_name, last_name, email, password, is_admin) VALUES ( '1', 'Ash', 'Pokemon', 'a@a.com', '12345', false)
-INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ('Pikachu', 'Pokemon', 'p@a.com', '12345', false)
-INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ('Charizard', 'Pokemon', 'c@a.com', '12345', false)
+INSERT INTO users (id, first_name, last_name, email, password, is_admin) VALUES ( '1', 'Ash', 'Pokemon', 'a@a.com', '$2a$10$FB/;BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', false)
+INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ('Pikachu', 'Pokemon', 'p@a.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', false);
+INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ('Charizard', 'Pokemon', 'c@a.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', false);
 
 -- book seed insertion
 INSERT INTO book (book_name, author, pages, genre, description, image_url, ISBN) VALUES ('Pokemon Crystal', 'Elizabeth M. Hollinger', '144', 'fun', 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'http://books.google.com/books/content?id=t7rK9URZ-IMC&printsec=frontcover&img=1&zoom=1&source=gbs_api', '9780439154048');
