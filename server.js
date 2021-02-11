@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
+const cors = require('cors')
 const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
@@ -25,6 +26,7 @@ const db = new Client({
   connectionString: process.env.DATABASE_URL,
 });
 
+app.use(cors())
 // use this if you want to use local db or db without
 // database_url string
 // const db = new Client({

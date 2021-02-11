@@ -10,7 +10,7 @@ export default function NewUser() {
     password: '',
     password2: '',
   });
-
+  console.log(account);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -70,13 +70,14 @@ export default function NewUser() {
       password2: account.password2,
     };
     console.log(data);
-    const URL = `/api/user/`;
+    const URL = `http://localhost:8080/api/user/`;
     const promise = axios
       .post(URL, data)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         if (response.data === 'exists') {
           setError('Email already used');
+          console.log("exist");
         }
 
         if (response.data === 'mismatch') {
