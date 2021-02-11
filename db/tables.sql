@@ -39,8 +39,12 @@ CREATE TABLE book_club (
   club_name VARCHAR(255) NOT NULL,
   -- users not needed, can get from book_club_readers table
   -- users VARCHAR(255) NOT NULL,
+  owner_id INT NOT NULL,
+  image_url VARCHAR(255),
   private BOOLEAN NOT NULL DEFAULT FALSE,
-  image_url VARCHAR(255)
+  CONSTRAINT fk_owner
+    FOREIGN KEY(owner_id) 
+	  REFERENCES users(id)
 );
 
 CREATE TABLE club_users (
