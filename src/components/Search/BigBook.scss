@@ -1,0 +1,30 @@
+@import '../../index';
+
+.big-book-card {
+  width: 600px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  border-style: solid;
+  border-width: thin;
+  margin: 10px;
+  background-color: $base-highlight-light;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
+  .big-book-card-cover {
+    grid-row: 1;
+    grid-column: 1;
+
+    .big-book-card-cover-image {
+      padding: 10px;
+    }
+  }
+
+  .big-book-card-info {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+
+.big-book-card:hover {
+  transform: scale(102%);
+}

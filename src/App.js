@@ -1,26 +1,20 @@
-import { Domain } from '@material-ui/icons';
+import { useState } from 'react';
 import './App.scss';
-import NewClub from './components/NewClub';
-import NewUser from './components/NewUser';
+// import NewClub from './components/NewClub';
+// import NewUser from './components/NewUser';
 import SearchBook from './components/Search/SearchBook';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
 
-function App() {
+export default function App() {
+  const [state, setState] = useState({
+    book: '',
+  });
   return (
     <Router>
     <div>
       {/* <NewClub></NewClub> */}
-      
-      <NewUser></NewUser>
-      <SearchBook></SearchBook>
+      {/* <NewUser></NewUser> */}
+      <SearchBook state={state} setState={setState}></SearchBook>
     </div>
     </Router>
   );
 }
-
-export default App;

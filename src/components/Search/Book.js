@@ -1,9 +1,15 @@
 import './Book.scss';
-import SearchBook from './SearchBook';
 
 export default function Book(props) {
+  const bookClick = () => {
+    props.setState({
+      ...props.state,
+      book: props.book,
+    });
+    console.log(props.book);
+  };
   return (
-    <div className="book-card">
+    <div className="book-card" onClick={bookClick}>
       <div className="book-card-cover">
         <img
           className="book-card-cover-image"

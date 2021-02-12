@@ -11,18 +11,19 @@ export default function NewUser() {
     password2: '',
   });
   console.log(account);
-  const [error, setError] = useState('');
-
+  const [wrongPass, setWrongPass] = useState(false);
+  const [userExist, setUserExist] = useState(false);
+  const [userMismatch, setUserMismatch] = useState(false);
   useEffect(() => {
     const passwordError = (password, password2) => {
       if (password !== password2) {
-        setError('Password mismatch');
+        setWrongPass(true);
       } else if (password === password2) {
-        setError('');
+        setWrongPass(false);
       }
     };
     passwordError(account.password, account.password2);
-  }, [error, setError]);
+  }, [wrongPass, setWrongPass]);
 
   const firstNameOnChange = (event) => {
     setAccount({
@@ -76,15 +77,15 @@ export default function NewUser() {
       .then((response) => {
         console.log(response);
         if (response.data === 'exists') {
-          setError('Email already used');
-          console.log("exist");
+          setUserExist(true);
         }
 
         if (response.data === 'mismatch') {
-          setError('Password mismatch');
+          setUserMismatch(true);
         }
         if (response.data.email) {
-          setError('');
+          setUserExist(false);
+          setUserMismatch(false);
           setAccount({
             ...account,
             firstName: '',
@@ -104,6 +105,9 @@ export default function NewUser() {
   return (
     <section className="new-user">
       <form className="new-user-form" method="POST" action="/login">
+
+        {userMismatch ? <div className="error">Mismatch</div> : null}
+        {userExist ? <div className="error">Exist</div> : null}
         <h3>First Name:</h3>
         <input
           type="text"
@@ -151,11 +155,11 @@ export default function NewUser() {
           value={account.password2}
           onChange={password2OnChange}
         />
+        {wrongPass ? <div className="error">Wrong Password</div> : null}
         <button onClick={create} type="submit" className="new-user-button">
           Submit
         </button>
       </form>
-      {error ? <div id="error">{error}</div> : null}
     </section>
   );
 }
