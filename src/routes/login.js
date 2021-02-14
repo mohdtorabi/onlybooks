@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = (db) => {
   router.get('/', (req, res) => {
     const userId = req.session.user_id;
+    console.log(userId);
     if (userId) {
       db.query(
         `SELECT * FROM users
@@ -26,9 +27,11 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
+    
     const email = req.body.email;
     const password = req.body.password;
-
+    console.log(email);
+    console.log(password);
     //query user from db
     db.query(
       `SELECT * FROM users
