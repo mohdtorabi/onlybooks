@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./NewUser.scss";
 
-export default function NewUser() {
+export default function Login() {
   const [account, setAccount] = useState({
     firstName: "",
     lastName: "",
@@ -71,7 +71,7 @@ export default function NewUser() {
       password2: account.password2,
     };
     console.log(data);
-    const URL = `http://localhost:8080/api/user`;
+    const URL = `http://localhost:8080/login/`;
     const promise = axios
       .post(URL, data)
       .then((response) => {
@@ -80,7 +80,7 @@ export default function NewUser() {
           setUserExist(true);
         }
 
-        if (response.data === "mismatch") {
+        if (response.data === "false") {
           setUserMismatch(true);
         }
         if (response.data.email) {
@@ -103,30 +103,11 @@ export default function NewUser() {
   };
 
   return (
-    <section className="new-user" id="create">
+    <section className="new-user">
       <form className="new-user-form" method="POST" action="/login">
-        <h1>Sign-up</h1>
+        <h1>Login</h1>
         {userMismatch ? <div className="error">Mismatch</div> : null}
         {userExist ? <div className="error">Exist</div> : null}
-        
-        <h3>First Name:</h3>
-        <input
-          type="text"
-          className="new-user-name"
-          required
-          name="lastName"
-          value={account.firstName}
-          onChange={firstNameOnChange}
-        />
-        <h3>Last Name:</h3>
-        <input
-          type="text"
-          className="new-user-name"
-          required
-          name="firstName"
-          value={account.lastName}
-          onChange={lastNameOnChange}
-        />
         <h3>Email:</h3>
         <input
           type="email"
@@ -146,21 +127,12 @@ export default function NewUser() {
           value={account.password}
           onChange={passwordOnChange}
         />
-        <h3>Re-enter Password:</h3>
-        <input
-          type="password"
-          minLength="6"
-          className="new-user-password"
-          required
-          name="password2"
-          value={account.password2}
-          onChange={password2OnChange}
-        />
         {wrongPass ? <div className="error">Wrong Password</div> : null}
         <button onClick={create} type="submit" className="new-user-button">
           Submit
         </button>
       </form>
+      New user? <a href="/">Create Account</a>
     </section>
   );
 }

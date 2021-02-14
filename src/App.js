@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './App.scss';
-// import NewClub from './components/NewClub';
-// import NewUser from './components/NewUser';
+import NewClub from './components/NewClub';
+import NewUser from './components/NewUser';
+import Login from './components/Login';
 import SearchBook from './components/Search/SearchBook';
 
 export default function App() {
@@ -12,8 +13,9 @@ export default function App() {
     <Router>
     <div>
       {/* <NewClub></NewClub> */}
-      {/* <NewUser></NewUser> */}
-      <SearchBook state={state} setState={setState}></SearchBook>
+      <Login></Login>
+      <NewUser></NewUser>
+      <SearchBook></SearchBook>
     </div>
     </Router>
   );
